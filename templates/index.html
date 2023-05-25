@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %}
+<div>
+    <form id="upload-file"  action="/" method="POST" enctype="multipart/form-data">
+      <center> {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        {% endfor %}
+      </center>
+
+      <div class="card">
+        <div class="card-header">
+         <h4> Upload Audio </h4>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Pilih Audio(MP3)</h5>
+          <p class="card-text"><input type="file" id="file" name="file" accept=".mp3"></p>
+          <p>
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Convert to</label>
+            <select name="format" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <option value="wav">WAV</option>
+                <option value="flac">FLAC</option>
+                <option value="ogg">OGG</option>
+            </select>
+          </p>
+          <input type="submit" href="{{ url_for('upload_file') }}" class="btn btn-primary " name="submit" value="Convert" >
+        </div>
+      </div>   
+    </form>
+   <div class="loader" style="display:none;"></div>
+
+    <h3 id="result">
+        <span> </span>
+    </h3>
+
+</div>
+{% endblock %}
